@@ -2,6 +2,7 @@ package me.tryfle.chams;
 
 import me.tryfle.chams.command.ToggleCommand;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.weavemc.loader.api.ModInitializer;
@@ -31,12 +32,9 @@ public class Main implements ModInitializer {
 
     @SubscribeEvent
     public void onPreLivingRender(RenderLivingEvent.Pre event) {
-        if (event.getEntity().isPlayer() && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
+        if (event.getEntity() instanceof EntityPlayer && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
-                GL11.glEnable(32823);
-                GL11.glPolygonOffset(1.0F, -1100000.0F);
-            } else {
-                GL11.glDisable(32823);
+                GL11.glDisable(GL11.GL_DEPTH_TEST);
                 GL11.glPolygonOffset(0.0F, 0.0F);
             }
         }
@@ -44,13 +42,10 @@ public class Main implements ModInitializer {
 
     @SubscribeEvent
     public void onPostLivingRender(RenderLivingEvent.Post event) {
-        if (event.getEntity().isPlayer() && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
+        if (event.getEntity() instanceof EntityPlayer && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
-                GL11.glEnable(32823);
-                GL11.glPolygonOffset(1.0F, 1100000.0F);
-            } else {
-                GL11.glDisable(32823);
-                GL11.glPolygonOffset(0.0F, 0.0F);
+                GL11.glEnable(GL11.GL_DEPTH_TEST);
+                GL11.glPolygonOffset(1.0F, -1100000.0F);
             }
         }
     }
