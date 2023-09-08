@@ -35,7 +35,7 @@ public class Main implements ModInitializer {
         if (event.getEntity() instanceof EntityPlayer && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
                 GL11.glDisable(GL11.GL_DEPTH_TEST);
-                GL11.glPolygonOffset(0.0F, 0.0F);
+                GL11.glPolygonOffset(1.0F, -1100000.0F);
             }
         }
     }
@@ -45,7 +45,7 @@ public class Main implements ModInitializer {
         if (event.getEntity() instanceof EntityPlayer && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
-                GL11.glPolygonOffset(1.0F, -1100000.0F);
+                GL11.glPolygonOffset(1.0F, 1100000.0F);
             }
         }
     }
