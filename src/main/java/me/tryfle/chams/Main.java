@@ -31,7 +31,7 @@ public class Main implements ModInitializer {
 
     @SubscribeEvent
     public void onPreLivingRender(RenderLivingEvent.Pre event) {
-        if (event.getEntity() != Minecraft.getMinecraft().thePlayer) {
+        if (event.getEntity().isPlayer() && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
                 GL11.glEnable(32823);
                 GL11.glPolygonOffset(1.0F, -1100000.0F);
@@ -44,7 +44,7 @@ public class Main implements ModInitializer {
 
     @SubscribeEvent
     public void onPostLivingRender(RenderLivingEvent.Post event) {
-        if (event.getEntity() != Minecraft.getMinecraft().thePlayer) {
+        if (event.getEntity().isPlayer() && event.getEntity() != Minecraft.getMinecraft().thePlayer) {
             if (enabled) {
                 GL11.glEnable(32823);
                 GL11.glPolygonOffset(1.0F, 1100000.0F);
